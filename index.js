@@ -1,44 +1,58 @@
 
-const addMore = ()=>{
-
-    
-    // take the parent element  ie ol
+// take the parent element  ie ol
 const ol = document.querySelector("ol.orderlist")
 
 
-// find the value and img
-const movieName = document.querySelector("input[name='name']").value
-console.log(movieName);
-
-
-const imgLink = document.querySelector("input[name='img']").value
-console.log(imgLink);
-
-
-// apply the style
-const li = document.createElement('li');
-
-
-const img = document.createElement('img');
-img.src = imgLink
-img.style.width = "30px"
-img.style.height = "30px"
-img.style.borderRadius="4px"
 
 
 
-const span = document.createElement("span");
-span.innerText=movieName;
+const name = ["Netflix", "Amazon Prime", "Hotstar"]
 
-li.appendChild(img);
-li.appendChild(span);
+const imgArr = ["https://duet-cdn.vox-cdn.com/thumbor/0x0:3151x2048/828x552/filters:focal(1575x1024:1576x1025):format(webp)/cdn.vox-cdn.com/uploads/chorus_asset/file/15844974/netflixlogo.0.0.1466448626.png",
+    "https://1000logos.net/wp-content/uploads/2022/10/Amazon-Prime-Video-Icon.png",
+    "data:image/jpeg;base64,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"];
 
-console.log(ol)
 
-console.log(li)
+for (i = 0; i < name.length; i++) {
+
+
+    // apply the style
+    const li = document.createElement('li');
+    li.style.marginBottom = "4px"
+
+
+
+    const img = document.createElement('img');
+    img.src = imgArr[i]
+    img.style.width = "30px"
+    img.style.height = "30px"
+    img.style.borderRadius = "4px"
+    img.style.objectFit = "cover"
+
+
+
+    const span = document.createElement("span");
+    span.innerText = name[i];
+
+    li.appendChild(img);
+    li.appendChild(span);
+
+    console.log(ol)
+
+    console.log(li)
 
     // append it to parent
 
     ol.appendChild(li);
 
+
+
 }
+
+
+
+
+
+
+
+
